@@ -1,0 +1,38 @@
+<tr>
+   <h2>Sim Details</h2>
+</tr>
+<tr>
+   <th>Operator name</th>
+   <th>Mobile number</th>
+   <th>Sim id</th>
+</tr>
+<tr>
+   <h2>Message sent</h2>
+</tr>
+
+<table border= "1">
+<tr>
+    <th><b>Transaction id</b></th>
+    <th>Message</th>
+    <th>Recipient name</th>
+    <th>Sending date</th>
+    <th>Sending Time</th>
+</tr>
+
+<% @sendmessage %>
+<tr>
+    <td><%= @sendmessage.id %></td>
+    <td><%= @sendmessage.message_text %></td>
+    <td><%= @sendmessage.recipient_number %></td>
+    <td><%= @sendmessage.date %></td>
+    <td><%= @sendmessage.time %></td>
+</tr>
+</table>
+
+<tr>
+   <h2>Message received</h2>
+</tr>
+<tr>
+   <th>Response time</th>
+   <th>Delievery status</th>
+</tr>

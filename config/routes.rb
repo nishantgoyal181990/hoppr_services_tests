@@ -1,6 +1,7 @@
 HopprServicesTests::Application.routes.draw do
   resources :sms_tests
   match '/sendmessage', to: 'sms_controller#send_msg'
+  match '/msgreport', to: 'sms_controller#msgReports', via:[:get]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
