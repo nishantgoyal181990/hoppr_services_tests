@@ -3,7 +3,7 @@ class CreateReceivemessages < ActiveRecord::Migration
     create_table :receivemessages do |t|
       t.integer :simcard_id
       t.string :sendmessage_id
-      t.integer :senders_number
+      t.string :sender
       t.text :message
       t.datetime :date
       t.datetime :time

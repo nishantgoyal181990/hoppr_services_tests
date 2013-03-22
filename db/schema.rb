@@ -15,32 +15,32 @@ ActiveRecord::Schema.define(:version => 20130314063344) do
 
   create_table "receivemessages", :force => true do |t|
     t.integer  "simcard_id"
-    t.string   "sendmessage_id"
-    t.integer  "senders_number"
+    t.integer  "sendmessage_id"
+    t.string   "sender",         :limit => nil
     t.text     "message"
-    t.integer  "date"
-    t.integer  "time"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "date"
+    t.datetime "time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sendmessages", :force => true do |t|
     t.text     "message_text"
     t.integer  "recipient_number"
-    t.integer  "date"
-    t.integer  "time"
+    t.datetime "date"
+    t.datetime "time"
     t.integer  "simcard_id"
     t.string   "delievery_status"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "simcards", :force => true do |t|
-    t.string   "operator"
     t.integer  "simid"
+    t.string   "operator"
     t.integer  "phone_number"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
