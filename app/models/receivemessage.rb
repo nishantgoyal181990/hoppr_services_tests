@@ -16,22 +16,23 @@ class Receivemessage < ActiveRecord::Base
 		sleep 1
 		sp.write "AT+CMGF=1\r"
 		sleep 1
+		i=0
 		10.times do
+		#while true do
 			sp.write "AT+CMGR=1\r"
 			sp.read_timeout=300
 			@message=sp.readlines()
-			binding.pry
-			#catch(:message) do
-			#throw :message if @message!=nil
-			if @message.last.include?('OK')
-				binding.pry
-				time=Time.now.inspect.split
-				date=time[0]
-				time=time[1]
-				actual_message=@message[2].gsub(/\r/, '').gsub(/\n/, '').gsub(/OK/, '')
-				binding.pry
-				Receivemessage.new_receivemessage(sm_id, actual_message, number, time, date, scid)
-			end
+				if @message.last.include?('OK')
+					s=@message[1].split(/\,/)
+					binding.pry
+					sender=s[1].gsub(/"/, '')
+					time=Time.now.inspect.split
+					date=time[0]
+					time=time[1]
+					actual_message=@message[2].gsub(/\r/, '').gsub(/\n/, '').gsub(/OK/, '')
+				 	Receivemessage.new_receivemessage(sm_id, actual_message, sender, time, date, $scid)
+				end
+			#end
 			if @message.last.include?('OK')
 				break
 			end
@@ -43,14 +44,14 @@ class Receivemessage < ActiveRecord::Base
 			#end
 		end
 	end
-	def self.new_receivemessage(sm_id, actual_message, number, time, date, scid)
+	def self.new_receivemessage(sm_id, actual_message, sender, time, date, scid)
 		params = {:receivemessage=>
   		{"sendmessage_id"=>sm_id,
-   		"simcard_id"=>scid,
+   		"simcard_id"=>$scid,
    		"message"=>actual_message,
    		"time"=>time,
    		"date"=>date,
-   		"sender"=>number}}
-  		Receivemessage.create(params[:receivemessage])
+   		"sender"=>sender}}
+  		$rm_id=Receivemessage.create(params[:receivemessage]).id
   	end
 end

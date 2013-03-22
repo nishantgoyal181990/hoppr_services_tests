@@ -11,12 +11,12 @@ validates :simid, presence: true, length: { minimum: 20 }
 			z=sp.readline('OK')
 			x=z.split(/\"/)
 			simid=x[1]
-			binding.pry
+			 
 			if simid.size == 20
 				break
 			end
 		end
-		binding.pry
+		 
 		return simid
 	end
 end

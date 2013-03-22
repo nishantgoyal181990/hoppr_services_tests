@@ -16,8 +16,8 @@ has_many :recievemessages
         hx="\x1A"
         Simcard.simcheck(portid)
         simid=Simcard.simcheck(portid)
-        scid=Simcard.create(operator: "", phone_number: nil, simid: simid).id
-        binding.pry
+        $scid=Simcard.create(operator: "", phone_number: nil, simid: simid).id
+         
         sp=SerialPort.new portid
         sp.write "AT+CNMI=0,1,1,1,0\r"
         sleep 1
@@ -27,7 +27,6 @@ has_many :recievemessages
         sleep 1
         #sp.write "AT+CMGD=1,4\r"
         messagerecipient=56660
-        binding.pry
         sp.write "AT+CMGS=56660\r"
         sleep 1
         messagetext=message
@@ -43,8 +42,8 @@ has_many :recievemessages
         z=Time.now.inspect.split
             date_ds=z[0]
             time_ds=z[1]
-        sm_id=Sendmessage.create(recipient_number: messagerecipient, message_text: messagetext, time: time_ds, date: date_ds, delievery_status: ds, simcard_id: scid ).id
+        $sm_id=Sendmessage.create(recipient_number: messagerecipient, message_text: messagetext, time: time_ds, date: date_ds, delievery_status: ds, simcard_id: $scid ).id
         sleep 10
-        Receivemessage.read_message(time_ds, portid, sm_id, scid)
+        Receivemessage.read_message(time_ds, portid, $sm_id, $scid)
     end
 end
