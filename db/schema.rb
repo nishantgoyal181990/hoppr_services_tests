@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130314063344) do
+ActiveRecord::Schema.define(:version => 20130325124644) do
+
+  create_table "keywords", :force => true do |t|
+    t.string   "keyword"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "receivemessages", :force => true do |t|
     t.integer  "simcard_id"
@@ -41,6 +47,12 @@ ActiveRecord::Schema.define(:version => 20130314063344) do
     t.integer  "phone_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "telcos", :force => true do |t|
+    t.string   "telco"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

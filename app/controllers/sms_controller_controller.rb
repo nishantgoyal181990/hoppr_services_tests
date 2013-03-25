@@ -19,8 +19,12 @@ class SmsControllerController < ApplicationController
  		#end
  	end
  	 def msgReports
-       	Sendmessage.send_msg(portid="/dev/ttyUSB5", message="y2cf")
-       	binding.pry
+       	Sendmessage.send_msg(portid="/dev/ttyUSB0", message="y2cf")
+       	Sendmessage.send_msg(portid="/dev/ttyUSB4", message="y2cf")
+        Sendmessage.send_msg(portid="/dev/ttyUSB3", message="y2cf")
+        Sendmessage.send_msg(portid="/dev/ttyUSB2", message="y2cf")
+        Sendmessage.send_msg(portid="/dev/ttyUSB1", message="y2cf")
+        binding.pry
        	#sid = Sendmessage.id
     	@sendmessage = Sendmessage.find_by_id($sm_id)
      	@receivemessage = Receivemessage.find_by_id($rm_id)

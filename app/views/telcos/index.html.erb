@@ -1,0 +1,23 @@
+<h1>Listing telcos</h1>
+
+<table>
+  <tr>
+    <th>Telco</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @telcos.each do |telco| %>
+  <tr>
+    <td><%= telco.telco %></td>
+    <td><%= link_to 'Show', telco %></td>
+    <td><%= link_to 'Edit', edit_telco_path(telco) %></td>
+    <td><%= link_to 'Destroy', telco, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Telco', new_telco_path %>

@@ -1,4 +1,10 @@
 HopprServicesTests::Application.routes.draw do
+  resources :telcos
+
+
+  resources :keywords
+
+
   resources :sms_tests
   match '/sendmessage', to: 'sms_controller#send_msg'
   match '/msgreport', to: 'sms_controller#msgReports', via:[:get]

@@ -17,11 +17,11 @@ class Receivemessage < ActiveRecord::Base
 		sp.write "AT+CMGF=1\r"
 		sleep 1
 		i=0
-		10.times do
-		#while true do
+		20.times do
 			sp.write "AT+CMGR=1\r"
 			sp.read_timeout=300
 			@message=sp.readlines()
+			binding.pry
 				if @message.last.include?('OK')
 					s=@message[1].split(/\,/)
 					binding.pry
@@ -32,16 +32,10 @@ class Receivemessage < ActiveRecord::Base
 					actual_message=@message[2].gsub(/\r/, '').gsub(/\n/, '').gsub(/OK/, '')
 				 	Receivemessage.new_receivemessage(sm_id, actual_message, sender, time, date, $scid)
 				end
-			#end
+			sleep 1
 			if @message.last.include?('OK')
 				break
 			end
-
-				
-			#end
-			#if @message.include?('OK') == true
-				#break
-			#end
 		end
 	end
 	def self.new_receivemessage(sm_id, actual_message, sender, time, date, scid)

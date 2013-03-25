@@ -1,0 +1,21 @@
+<%= form_for(@telco) do |f| %>
+  <% if @telco.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@telco.errors.count, "error") %> prohibited this telco from being saved:</h2>
+
+      <ul>
+      <% @telco.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :telco %><br />
+    <%= f.text_field :telco %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
